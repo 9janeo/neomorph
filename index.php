@@ -1,4 +1,4 @@
-<?php //get_header(); 
+<?php get_header(); 
 /*Template Name: Neomorph Skin 1
  */
 ?>
@@ -8,7 +8,7 @@
   </div>
   <!-- End index.php -->
 
-<?php //get_footer(); ?>
+<?php get_footer(); ?>
 
     
    

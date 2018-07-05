@@ -16,7 +16,7 @@ class Project extends React.Component {
     var url = window.location.href.split('/');
     var slug = url.pop() || url.pop();
 
-    fetch(NeomorphSettings.URL.api + "/projects/" + id)
+    fetch(NeomorphSettings.URL.api + "/projects/" + slug)
       .then(function (response) {
           if (!response.ok) {
               throw Error(response.statusText);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import * as ScrollMagic from 'scrollmagic';
+import ScrollMagic from 'scrollmagic/scrollmagic/uncompressed/ScrollMagic';
 import PostList from './post-list';
 import LoadingIcon from './loading-icon.png';
 import Placeholder from './placeholder.png';

@@ -1,8 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import ScrollMagic from 'scrollmagic/scrollmagic/uncompressed/ScrollMagic';
-
 import Header from './header';
 import Footer from './footer';
 import Posts from './posts';
@@ -24,7 +22,7 @@ const App = () => (
         <Route exact path={NeomorphSettings.path} component={Posts} /> //the root path
         <Route exact path={NeomorphSettings.path + 'posts/:slug'} component={Post} />
         <Route exact path={NeomorphSettings.path + 'project'} component={Projects} />
-        <Route exact path={NeomorphSettings.path + 'projects/:product'} component={Project} />
+        <Route exact path={NeomorphSettings.path + 'projects/:slug'} component={Project} />
         <Route path="*" component={NotFound} />
       </Switch>
     </div>

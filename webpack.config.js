@@ -5,6 +5,7 @@ module.exports = {
   entry: {
     app: './src/index.jsx'
   },
+  mode: 'development',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js'
@@ -58,6 +59,9 @@ module.exports = {
     }
   },
   devtool: 'inline-source-map',
+  devServer: {
+    contentBase: './dist'
+  },
   plugins: [
     new MiniCssExtractPlugin({
       filename: "style.css",

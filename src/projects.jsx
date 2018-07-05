@@ -44,8 +44,8 @@ class Projects extends React.Component {
     jQuery("#loader").addClass("active");
 
     this.setState({ page: this.state.page + 1 });
-
-    fetch(NeomorphSettings.URL.api + "/projects/?page=" + this.state.page)
+    console.log({NeomorphSettings});
+    fetch(NeomorphSettings.URL.api + "/posts?type=project")
       .then(function (response) {
         for (var pair of response.headers.entries()) {
 
