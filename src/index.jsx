@@ -21,7 +21,7 @@ const App = () => (
       <Switch>
         <Route exact path={NeomorphSettings.path} component={Posts} /> //the root path
         <Route exact path={NeomorphSettings.path + 'posts/:slug'} component={Post} />
-        <Route exact path={NeomorphSettings.path + 'project'} component={Projects} />
+        <Route exact path={NeomorphSettings.path + 'posts?post_type=projects'} component={Projects} />
         <Route exact path={NeomorphSettings.path + 'projects/:slug'} component={Project} />
         <Route path="*" component={NotFound} />
       </Switch>

@@ -29,9 +29,10 @@ class Post extends React.Component {
 
   renderPosts() {
     return (
-      <div className="card">
+      <div className="card">        
         <div className="card-body">
-          <h4 className="card-title">{this.state.post.title.rendered}</h4>
+          <h3 className="card-title"><Link to={'posts/' + post.slug}>{post.title.rendered}</Link></h3>
+          <h4 className="card-author">Post made by: <Link to={post._links.author[0].href}>{post.author_name}</Link></h4>
           <p className="card-text"><small className="text-muted">{this.state.post.author_name} &ndash; {this.state.post.published_date}</small></p>
           {
             this.state.post.featured_image_src ? <img className="featured-image" src={this.state.post.featured_image_src} alt="featured image" /> : null
@@ -49,7 +50,7 @@ class Post extends React.Component {
   }
 
   render() {
-    console.log('this.state.post',this.state.post)
+    console.log(this.state.post)
     return (
       <div className="container post-entry">
         {this.state.post.title ?

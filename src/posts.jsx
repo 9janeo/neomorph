@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ScrollMagic from 'scrollmagic/scrollmagic/uncompressed/ScrollMagic';
-import PostList from './post-list';
+
 import LoadingIcon from './loading-icon.png';
 import Placeholder from './placeholder.png';
+import PostList from './post-list';
 
 class Posts extends React.Component {
 
@@ -55,16 +56,16 @@ class Posts extends React.Component {
 
           // getting the total number of pages
           if (pair[0] == 'x-wp-totalpages') {
-              totalPages = pair[1];
+            totalPages = pair[1];
           }
 
           if (that.state.page >= totalPages) {
-              that.setState({ getPosts: false })
+            that.setState({ getPosts: false })
           }
-         }
-         if (!response.ok) {
-            throw Error(response.statusText);
-         }
+        }
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
         return response.json();
     })
     .then(function (results) {

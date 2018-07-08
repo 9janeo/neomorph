@@ -44,9 +44,9 @@ class Projects extends React.Component {
     jQuery("#loader").addClass("active");
 
     this.setState({ page: this.state.page + 1 });
-    console.log({NeomorphSettings});
-    fetch(NeomorphSettings.URL.api + "/posts?type=project")
+    fetch(NeomorphSettings.URL.api + "/posts?post_type=projects")
       .then(function (response) {
+      	console.log(response);
         for (var pair of response.headers.entries()) {
 
             // getting the total number of pages
@@ -130,7 +130,8 @@ class Projects extends React.Component {
   render() {
     return (
       <div className="container post-entry">
-        {this.state.projects ?
+        {
+        	this.state.projects ?
           this.renderProjects() :
           this.renderEmpty()
         }

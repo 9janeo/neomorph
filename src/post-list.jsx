@@ -7,9 +7,11 @@ import NotFound from './not-found';
 class PostList extends React.Component {
 
   renderPosts() {
+    const name = "Niyi Adewole";
     return this.props.posts.map((post, i) => {
       return (
         <div className="col-md-4 card-outer" key={i}>
+          <span>Developed by: {name}</span>
           <div className="card">
             <div className="img-outer">
               <Link to={'posts/' + post.slug}>
@@ -17,7 +19,8 @@ class PostList extends React.Component {
               </Link>
             </div>
             <div className="card-body">
-              <h4 className="card-title"><Link to={'posts/' + post.slug}>{post.title.rendered}</Link></h4>
+              <h3 className="card-title"><Link to={'posts/' + post.slug}>{post.title.rendered}</Link></h3>
+              <h4 className="card-author">Post made by: <Link to={post._links.author[0].href}>{post.author_name}</Link></h4>
               <p className="card-text"><small className="text-muted">{post.author_name} &ndash; {post.published_date}</small></p>
               <p>{jQuery(post.excerpt.rendered).text()}</p>
             </div>
