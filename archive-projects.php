@@ -6,7 +6,7 @@ get_header(); ?>
 	<div role="main" class="wrapper post whitebg">
         <div id="neomorph"></div>
 	    <?php
-			$mypost = array( 'post_type' => 'projects', );
+			$mypost = array( 'post_type' => 'project', );
 			$loop = new WP_Query( $mypost );
 		?>
 		<?php while ( $loop->have_posts() ) : $loop->the_post();?>					

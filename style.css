@@ -4,7 +4,7 @@
  Description:    Neo-Morph - A react power up for wordpress utilizing the WP REST API
  Author:         Niyi Adewole
  Author URI:     http://www.niyiadewole.com
- Version:        1.0.0
+ Version:        1.0.1
  Reference: https://www.smashingmagazine.com/2018/03/react-wordpress-web-app/
 */
 
@@ -240,6 +240,15 @@ ul.nav li.menu-item a:active , ul.nav li a:hover, ul.nav li.current-menu-item a 
 	position: relative;
 }
 
+
+/* ======= Layout & Structure Style ======== */
+
+.grid-container {
+	display: grid;
+	grid-template-columns: 33% 33% 33%;
+	justify-content: space-evenly;
+}
+
 /* ==========Projects Navigation============ */
 
 .navigation {
@@ -426,6 +435,10 @@ ul.nav li.menu-item a:active , ul.nav li a:hover, ul.nav li.current-menu-item a 
 	float: left;
 }
 
+.project-module {
+	
+}
+
 /* Template Specific Styling */
 
 /* _______**** Projects Archive ****________ */
@@ -434,7 +447,7 @@ ul.nav li.menu-item a:active , ul.nav li a:hover, ul.nav li.current-menu-item a 
 	min-width: 300px;
 	width: 30%;
 	float: left;
-	height: same-as-width;
+	/*height: same-as-width;*/
 	border: thin solid #999;
 	padding: 0.5%;
 	background-color: #f3f3f3;

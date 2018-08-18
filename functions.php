@@ -19,43 +19,34 @@ wp_enqueue_script( 'neomorph-script', get_stylesheet_directory_uri() . '/dist/ap
   $url = trailingslashit( home_url() );
   $path = trailingslashit( parse_url( $url, PHP_URL_PATH ) );
 
-  wp_scripts()->add_data( 'neomorph-script', 'data', sprintf( 'var NeomorphSettings = %s;', wp_json_encode( array(
-    'title' => get_bloginfo( 'name', 'display' ),
-    'path' => $path,
-    'URL' => array(
-        'api' => esc_url_raw( get_rest_url( null, '/wp/v2' ) ),
-        'root' => esc_url_raw( $url ),
-    ),
-    // Woo Commerce Settings
-    // 'woo' => array(
-    //     'url' => esc_url_raw( 'https://localhost/celestial/wp-json/wc/v2/' ),
-    //     'consumer_key' => 'ck_803bcdcaa73d3a406a0f107041b07ef6217e05b9',
-    //     'consumer_secret' => 'cs_c50ba3a77cc88c3bf46ebac49bbc96de3a543f03'
-    // ),
-  ) ) ) );
+  wp_scripts()->add_data( 'neomorph-script', 'data', sprintf
+    ( 'var NeomorphSettings = %s;', 
+      wp_json_encode(
+        array(
+          'title' => get_bloginfo( 'name', 'display' ),
+          'path' => $path,
+          'URL' => array(
+            'api' => esc_url_raw( 
+              get_rest_url( null, '/wp/v2' )
+            ),
+            'root' => esc_url_raw( $url ),
+          ),
+          // Woo Commerce Settings
+          // 'woo' => array(
+          //     'url' => esc_url_raw( 'https://localhost/celestial/wp-json/wc/v2/' ),
+          //     'consumer_key' => 'ck_803bcdcaa73d3a406a0f107041b07ef6217e05b9',
+          //     'consumer_secret' => 'cs_c50ba3a77cc88c3bf46ebac49bbc96de3a543f03'
+          // ),
+        ) 
+      ) 
+    ) 
+  );
+
+
+// This line solved the 'wp-admin visual editor not appearing' issue
+  // define('CONCATENATE_SCRIPTS', false);
 
 // add_action('wp_enqueue_scripts', 'neomorph-script');
-
-
-
-// function register_my_menus() {
-//   register_nav_menus(
-//     array(  
-//     	'header_navigation' => __( 'header' , 'Header Navigation' ),
-// 			'sidebar_nav' => __( 'sidebar' , 'Sidebar Navigation' ), 
-//     	'expanded_footer' => __( 'footer' , 'Expanded Footer' ),
-//     	'footer_navigation' => __( 'footer' , 'Expanded Footer' )
-//     )
-//   );
-// } 
-// add_action( 'init', 'register_my_menus' );
-
-// function default_header_nav() { // HTML markup for a default message in menu location
-// 	echo "<ul class='nav'>					
-// 		<li>Create the Header Navigation</li>
-// 	</ul>
-// 	<br \>" ;
-// }
 
 function default_expanded_footer() { 
 	echo "<ul class='nav cols four'>					
@@ -63,12 +54,8 @@ function default_expanded_footer() {
 	</ul>" ;
 }
 
-//Sidebar function for 2 dynamic sidebars in widgets area
-// if ( function_exists('register_sidebars') )
-//     register_sidebars();
-	
-// add_theme_support( 'post-thumbnails' ); 
-
+// This theme uses post thumbnails
+add_theme_support( 'post-thumbnails' );
 
 // Changing excerpt length
 function new_excerpt_length($length) {

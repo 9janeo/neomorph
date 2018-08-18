@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ScrollMagic from 'scrollmagic/scrollmagic/uncompressed/ScrollMagic';
+
 import LoadingIcon from './loading-icon.png';
 import Placeholder from './placeholder.png';
+import ProjectList from './project-list';
+
 
 class Projects extends React.Component {
 
@@ -22,6 +26,7 @@ class Projects extends React.Component {
 
   componentDidMount() {
     var that = this;
+    window.onbeforeunload = function () { window.scrollTo(0, 0); }
 
     // init ScrollMagic Controller
     that.state.controller = new ScrollMagic.Controller();
@@ -44,7 +49,7 @@ class Projects extends React.Component {
     jQuery("#loader").addClass("active");
 
     this.setState({ page: this.state.page + 1 });
-    fetch(NeomorphSettings.URL.api + "/posts?post_type=projects")
+    fetch(NeomorphSettings.URL.api + "/projects?&_embed")
       .then(function (response) {
       	console.log(response);
         for (var pair of response.headers.entries()) {
@@ -94,26 +99,26 @@ class Projects extends React.Component {
     });
   }
 
-  renderProjects() {
-    return this.state.projects.map((project, i) => {
-      return (
-        <div className="col-md-4 card-outer" key={i}>
-          <div className="card">
-            <div className="img-outer">
-              <Link to={project.slug}>
-                <img className="card-img-top" src={project.images ? project.images[0].src : Placeholder} alt="Featured Image" />
-              </Link>
-            </div>
-            <div className="card-body">
-              <h4 className="card-title"><Link to={project.slug}>{project.name}</Link></h4>
-              <p className="card-text"><small className="text-muted">$ {project.price}</small></p>
-              <p>{jQuery(project.description).text()}</p>
-            </div>
-          </div>
-        </div>
-      )
-    });
-  }
+  // renderProjects() {
+  //   return this.state.projects.map((project, i) => {
+  //     return (
+  //       <div className="col-md-4 card-outer" key={i}>
+  //         <div className="card">
+  //           <div className="img-outer">
+  //             <Link to={project.slug}>
+  //               <img className="card-img-top" src={project.images ? project.images[0].src : Placeholder} alt="Featured Image" />
+  //             </Link>
+  //           </div>
+  //           <div className="card-body">
+  //             <h4 className="card-title"><Link to={project.slug}>{project.name}</Link></h4>
+  //             <p className="card-text"><small className="text-muted">$ {project.price}</small></p>
+  //             <p>{jQuery(project.description).text()}</p>
+  //           </div>
+  //         </div>
+  //       </div>
+  //     )
+  //   });
+  // }
 
   renderEmpty() {
     return (
@@ -128,16 +133,26 @@ class Projects extends React.Component {
   }
 
   render() {
-    return (
-      <div className="container post-entry">
-        {
-        	this.state.projects ?
-          this.renderProjects() :
-          this.renderEmpty()
-        }
-        <img src={LoadingIcon} alt="loader gif" id="loader" />
-      </div>
-    );
+    if (this.state.projects.length == 0) {
+        return null;
+      }
+      // <img src={LoadingIcon} alt="loader gif" id="loader" />
+      return (
+        <div className="project-module">      
+          <h1 className="project-title">Recent Projects</h1>
+          <ProjectList projects={this.state.projects} />
+        </div>
+      );
+    // return (
+    //   <div className="container post-entry">
+    //     {
+    //     	this.state.projects ?
+    //       this.renderProjects() :
+    //       this.renderEmpty()
+    //     }
+    //     <img src={LoadingIcon} alt="loader gif" id="loader" />
+    //   </div>
+    // );
   }
 }
 
