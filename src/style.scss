@@ -6,3 +6,27 @@
  Author URI:     http://www.niyiadewole.com
  Version:        1.0.0
 */
+
+.sticky {
+    position: fixed;
+    top: 0%;
+    width: 100%;
+    z-index: 10;
+}
+
+#masthead.site-header.sticky {
+    position: fixed;
+    top: 0%;
+    width: 100%;
+    z-index: 10;
+}
+
+#masthead {
+    padding: 10px 16px;
+    background: #555;
+    color: #fdfdfd;
+}
+
+#masthead + .content {
+
+}

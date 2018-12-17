@@ -1,5 +1,8 @@
 var MiniCssExtractPlugin = require("mini-css-extract-plugin");
 var path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   entry: {
@@ -7,8 +10,9 @@ module.exports = {
   },
   mode: 'development',
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js'
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist')
+    // publicPath: '/'
   },
   module: {
     rules: [
@@ -60,9 +64,17 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: './dist'
+    // contentBase: './src',
+    // contentBase: path.join(__dirname, './src'),
+    publicPath: 'localhost/portfolio',
+    hot: true
   },
   plugins: [
+    new CleanWebpackPlugin(['dist']),
+    new HtmlWebpackPlugin({
+      title: 'Hot Module Replacement'
+    }),
+    new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
       filename: "style.css",
       allChunks: true

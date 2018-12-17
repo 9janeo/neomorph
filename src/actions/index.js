@@ -3,8 +3,11 @@ import axios from 'axios';
 //Middleware handled using redux-promise in top level index
 const ROOT_URL = NeomorphSettings.URL.api;
 const FIND_IN = "/posts?type[]=post&type[]=page&type[]=projects";
+const API_KEY = "Wordpress API not secured yet";
 
 export const SEARCH_WEBSITE = 'SEARCH_WEBSITE';
+export const FETCH_PROJECTS = 'fetch_projects';
+export const FETCH_PAGES = 'FETCH_PAGES';
 
 export function searchWebsite(term) {
 	const url = `${ROOT_URL}${FIND_IN}&search=${term}`;
@@ -16,7 +19,14 @@ export function searchWebsite(term) {
 	};
 }
 
-export const FETCH_PAGES = 'FETCH_PAGES';
+export function fetchProjects() {
+	const request = axios.get(`${ROOT_URL}/projects?&_embed`);
+
+	return {
+		type: FETCH_PROJECTS,
+		payload: request
+	};
+}
 
 export function fetchPages() {
 	const url = `${ROOT_URL}/pages`;
@@ -31,7 +41,8 @@ export function fetchPages() {
 export const FETCH_PAGE = 'FETCH_PAGE';
 
 export function fetchPage(pageName) {
-	const url = `${ROOT_URL}/pages?slug=${pageName}`;
+	const slug = (pageName !== undefined) ? pageName : 'home';
+	const url = `${ROOT_URL}/pages?slug=${slug}`;
 	const request = axios.get(url);
 
 	return {

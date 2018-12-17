@@ -14,7 +14,7 @@
 
 // add_action('wp_enqueue_scripts', 'app_resources');
 
-wp_enqueue_script( 'neomorph-script', get_stylesheet_directory_uri() . '/dist/app.js' , array(), '1.0', true );
+wp_enqueue_script( 'neomorph-script', get_stylesheet_directory_uri() . '/dist/app.js' , array(), null, true );
 
   $url = trailingslashit( home_url() );
   $path = trailingslashit( parse_url( $url, PHP_URL_PATH ) );
