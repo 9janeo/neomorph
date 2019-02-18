@@ -33,11 +33,13 @@
     "scrollmagic": "^2.0.5",
     "style-loader": "^0.19.0",
     "webpack": "^4.14.0",
-    "webpack-cli": "^3.0.8"
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.10"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
+    "build": "webpack-dev-server",
+    "build:prod": "webpack -p",
     "watch": "webpack --watch",
     "start": "webpack-dev-server --open"
   },
@@ -50,7 +52,7 @@
     "Wordpress",
     "Information",
     "Technology",
-    "Insights"
+    "Communications"
   ],
   "author": "Niyi Adewole",
   "license": "MIT",

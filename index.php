@@ -6,7 +6,6 @@
   	<div id="neomorph"> </div>
   <!-- End index.php -->
 
-<?php get_footer(); ?>
+  <!-- https://www.kirstencassidy.com/incorporting-webpack-wordpress-theme-part-2/ -->
 
-    
-   
+<?php get_footer(); ?>

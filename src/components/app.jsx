@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+// import { createstore } from 'redux';
+import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Header from '../header';
@@ -7,7 +9,7 @@ import Posts from '../components/posts';
 import Post from '../containers/post';
 import ProjectsIndex from './projects_index';
 import ProjectsNew from './projects_new';
-import Project from '../project';
+import ProjectsShow from './projects_show';
 import Page from './page';
 import SearchBar from '../containers/search_bar';
 import SearchResult from '../containers/search_result';
@@ -23,9 +25,12 @@ import Placeholder from '../placeholder.png';
 // Load the Sass file
 // require('./style.scss');
 
-export default class App extends Component {
+//Initialize app state here, with path and custome post types
+
+class App extends Component {
   render() {
-    // console.log(this.state);
+    //console.log('App state:' + this.state);
+    // console.log(store.getState());
     // <SearchBar />
     // <SearchResult />
     return (
@@ -33,10 +38,11 @@ export default class App extends Component {
         <Header />
         <div className="container">
           <Switch>            
-            <Route path={NeomorphSettings.path + 'project/:id'} component={Project} />
             <Route path={NeomorphSettings.path + 'projects/new'} component={ProjectsNew} />
+            <Route path={NeomorphSettings.path + 'projects/:id'} component={ProjectsShow} />
             <Route exact path={NeomorphSettings.path + 'projects'} component={ProjectsIndex} />            
-            <Route exact path={NeomorphSettings.path + ':page'} component={Page} />
+            <Route exact path={NeomorphSettings.path + 'page/:slug'} component={PageShow} />            
+            {/* <Route exact path={NeomorphSettings.path + ':page'} component={Page} /> */}
             <Route exact path={NeomorphSettings.path} component={Posts} /> {/* /the root path */}
             {/* <Route exact path={NeomorphSettings.path + 'posts?post_type=projects'} component={Projects} /> */}
             <Route path="*" component={NotFound} />
@@ -48,3 +54,8 @@ export default class App extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return { app: state };
+}
+
+export default connect(mapStateToProps)(App);
