@@ -9,17 +9,10 @@ export default function(state = [] , action) {
             // "description": "A curation of my work",
             // "url": "http://localhost/portfolio",
             // "home": "http://localhost/portfolio",
-<<<<<<< 2d390c137cc6a1409dae9f4a7a32e444f90949d5
-            // const project = action.payload.data;
-            // const newState = [ ...state ];
-            // newState[project.id] = project;
-            // return newState;
-=======
             const project = action.payload.data;
             const newState = [ ...state ];
             newState[project.id] = project;
             return newState;
->>>>>>> Adding functionality to display single post
             // return { ...state, [action.payload.data.id]: action.payload.data };
         case BUILD_MENUS:
             // console.log(action.payload.data); // expect a collection of projects
