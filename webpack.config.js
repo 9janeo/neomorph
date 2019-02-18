@@ -71,7 +71,11 @@ module.exports = {
     hot: true
   },
   plugins: [
+<<<<<<< 2d390c137cc6a1409dae9f4a7a32e444f90949d5
     // new CleanWebpackPlugin(['dist']),
+=======
+    //new CleanWebpackPlugin(['dist']),
+>>>>>>> Adding functionality to display single post
     new HtmlWebpackPlugin({
       template: './index.php',
       title: 'Hot Module Replacement'

@@ -10,7 +10,7 @@ import NotFound from '../not-found';
 class ProjectsShow extends Component {
 
   componentDidMount() {
-    // var that = this; 
+    // var that = this;
     console.log ("hitting projects show component");  
     const project = this.props.match.params
     const { id } = project.id
@@ -36,34 +36,8 @@ class ProjectsShow extends Component {
     //   });
   }
 
-    // return _.map(this.props.projects, project => {
-    //     const projectImage = project._embedded['wp:featuredmedia'][0].source_url
-    //     return (
-    //             <div className="card-outer grid-item" key={project.id}>
-    //                 <div className="card h-100">
-    //                     <div className="card-body">
-    //                         <h4 className="card-title"><Link to={NeomorphSettings.path + `project?id=${project.id}`}>{project.title.rendered}</Link></h4>
-    //                         <div className="img-outer canvasThumb">
-    //                             <Link to={NeomorphSettings.path + project.slug}>
-    //                                 <img className="card-img-top" src={projectImage} alt="Featured Image" />
-    //                             </Link>
-    //                         </div>
-    //                         <p>{jQuery(project.excerpt.rendered).text()}</p>
-    //                         <Link to={NeomorphSettings.path + 'projects/' + project.id}>Read more</Link>
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //     );
-    // });
-
-
-
   renderProject(project) {
-    console.log ("Attempted to render:" + this.state.project);
-    // const project = this.state.project;
-
     return (
-      
       <div>
         <p>
           Something written in here to identify project Show component
@@ -93,25 +67,21 @@ class ProjectsShow extends Component {
   render() {
     const {project} = this.props;
     console.log ("Main project render props:");
-
-    // if (!project) {
-    //   return <div>Loading ... </div>
-    // }
-    // projects[this.props.match.params.id];
+    if (!project) {
+      return <div>Loading ... </div>
+    }
+  
 
     return (
       <div className="container post-entry show">
-        <p>
-          Something written in here to identify project Show component
-        </p>
         <h3>
-          {/* {project.title} */}
+          {project.titile}
         </h3>
         <h6>
-          {/* Categories: {project.categories} */}
+          Categories: {project.categories}
         </h6>
         <p>
-          {/* {project.content} */}
+          {project.content}
         </p>
       </div>
     );
