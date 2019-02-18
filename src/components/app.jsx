@@ -39,9 +39,9 @@ class App extends Component {
         <div className="container">
           <Switch>            
             <Route path={NeomorphSettings.path + 'projects/new'} component={ProjectsNew} />
-            <Route path={NeomorphSettings.path + 'projects/:id'} component={ProjectsShow} />
+            <Route path={NeomorphSettings.path + 'project/:id'} component={ProjectsShow} />
             <Route exact path={NeomorphSettings.path + 'projects'} component={ProjectsIndex} />            
-            <Route exact path={NeomorphSettings.path + 'page/:slug'} component={PageShow} />            
+            {/* <Route exact path={NeomorphSettings.path + 'page/:slug'} component={PageShow} />             */}
             {/* <Route exact path={NeomorphSettings.path + ':page'} component={Page} /> */}
             <Route exact path={NeomorphSettings.path} component={Posts} /> {/* /the root path */}
             {/* <Route exact path={NeomorphSettings.path + 'posts?post_type=projects'} component={Projects} /> */}

@@ -12,6 +12,15 @@ class ProjectsIndex extends Component {
 
     renderProjects() {
         //get all projects and display properly
+
+        // [{Name: projects}].map((anObjectMapped, index) => {
+        //     return (
+        //         <p key={`${anObjectMapped.name}_{anObjectMapped.email}`}>
+        //             {anObjectMapped.name} - {anObjectMapped.email}
+        //         </p>
+        //     );
+        // })
+
         return _.map(this.props.projects, project => {
             const projectImage = project._embedded['wp:featuredmedia'][0].source_url
             return (
@@ -25,7 +34,7 @@ class ProjectsIndex extends Component {
                                     </Link>
                                 </div>
                                 <p>{jQuery(project.excerpt.rendered).text()}</p>
-                                <Link to={NeomorphSettings.path + 'projects/' + project.id}>Read more</Link>
+                                <Link to={NeomorphSettings.path + 'project/' + project.id}>Read more</Link>
                             </div>
                         </div>
                     </div>

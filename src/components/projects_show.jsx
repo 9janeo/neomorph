@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchProject } from '../actions';
-// import NotFound from '../not-found';
+import _ from "lodash";
+import NotFound from '../not-found';
 // import Project from './components/project';
 // import { Link } from 'react-router-dom';
 // import ProjectList from './project-list';
@@ -10,11 +11,15 @@ class ProjectsShow extends Component {
 
   componentDidMount() {
     // var that = this; 
-    console.log ("hitting projects show component");   
-    const { id } = this.props.match.params.id
-    this.props.fetchProject(id);
-    console.log("Projects Show State:" + this.props);
-    console.log("ID: " + this.props.match.params.id);
+    console.log ("hitting projects show component");  
+    const project = this.props.match.params
+    const { id } = project.id
+    console.log ("Project ID:" + project.id);
+    console.log ("hitting projects show component");
+    
+    this.props.fetchProject(`${project.id}`);
+
+    console.log("Projects Show State:" + this.state);
     // var url = window.location.href.split('/');
     // var slug = url.pop() || url.pop();
 
@@ -31,8 +36,34 @@ class ProjectsShow extends Component {
     //   });
   }
 
+    // return _.map(this.props.projects, project => {
+    //     const projectImage = project._embedded['wp:featuredmedia'][0].source_url
+    //     return (
+    //             <div className="card-outer grid-item" key={project.id}>
+    //                 <div className="card h-100">
+    //                     <div className="card-body">
+    //                         <h4 className="card-title"><Link to={NeomorphSettings.path + `project?id=${project.id}`}>{project.title.rendered}</Link></h4>
+    //                         <div className="img-outer canvasThumb">
+    //                             <Link to={NeomorphSettings.path + project.slug}>
+    //                                 <img className="card-img-top" src={projectImage} alt="Featured Image" />
+    //                             </Link>
+    //                         </div>
+    //                         <p>{jQuery(project.excerpt.rendered).text()}</p>
+    //                         <Link to={NeomorphSettings.path + 'projects/' + project.id}>Read more</Link>
+    //                     </div>
+    //                 </div>
+    //             </div>
+    //     );
+    // });
+
+
+
   renderProject(project) {
+    console.log ("Attempted to render:" + this.state.project);
+    // const project = this.state.project;
+
     return (
+      
       <div>
         <p>
           Something written in here to identify project Show component
@@ -61,22 +92,26 @@ class ProjectsShow extends Component {
 
   render() {
     const {project} = this.props;
+    console.log ("Main project render props:");
 
-    if (!project) {
-      return <div>Loading ... </div>
-    }
+    // if (!project) {
+    //   return <div>Loading ... </div>
+    // }
     // projects[this.props.match.params.id];
 
     return (
       <div className="container post-entry show">
+        <p>
+          Something written in here to identify project Show component
+        </p>
         <h3>
-          {project.titile}
+          {/* {project.title} */}
         </h3>
         <h6>
-          Categories: {project.categories}
+          {/* Categories: {project.categories} */}
         </h6>
         <p>
-          {project.content}
+          {/* {project.content} */}
         </p>
       </div>
     );
@@ -85,6 +120,7 @@ class ProjectsShow extends Component {
 
 function mapStateToProps({ projects }, ownProps) {
   return { project: projects[ownProps.match.params.id] };
+  Console.log("Mapstatetoprop project:" + `${projects[ownProps.match.params.id]}`);
   // return { projects };
 }
 
