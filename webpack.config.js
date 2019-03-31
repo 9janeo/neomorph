@@ -71,7 +71,7 @@ module.exports = {
     hot: true
   },
   plugins: [
-    //new CleanWebpackPlugin(['dist']),
+    // new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       template: './index.php',
       title: 'Hot Module Replacement'

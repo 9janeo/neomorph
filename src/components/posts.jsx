@@ -1,116 +1,64 @@
+import _ from 'lodash';
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-import ScrollMagic from 'scrollmagic/scrollmagic/uncompressed/ScrollMagic';
-
+// import ScrollMagic from 'scrollmagic/scrollmagic/uncompressed/ScrollMagic';
+import { connect } from 'react-redux';
+import { fetchPosts } from '../actions';
 import LoadingIcon from '../loading-icon.png';
 import Placeholder from '../placeholder.png';
 import PostList from '../containers/post-list';
 
 class Posts extends Component {
 
-  constructor(props) {
-    super(props);
-    this.getMorePosts = this.getMorePosts.bind(this);
-    this.state = {
-      posts: [],
-      page: 0,
-      getPosts: true,
-      controller: false
+    componentDidMount() {
+        this.props.fetchPosts();
     }
-    this.getMorePosts = this.getMorePosts.bind(this);
-  }
 
-  componentWillUnmount() {
-    this.getMorePosts = null;
-  }
+    renderPosts() {
+        //get all projects and display properly
 
-  componentDidMount() {
-    var that = this;
-    window.onbeforeunload = function () { window.scrollTo(0, 0); }
-
-    // init ScrollMagic Controller
-    that.state.controller = new ScrollMagic.Controller();
-
-    // build scene
-    var scene = new ScrollMagic.Scene({ triggerElement: "#colophon", triggerHook: "onEnter" })
-      .addTo(that.state.controller)
-      .on("enter", function (e) {
-        if (that.state.getPosts && that.getMorePosts !== null) {
-          that.getMorePosts();
-        }
-      });
-  }
-
-	getMorePosts() {
-    var that = this;
-    var totalPages;
-
-    // adding a loader
-    jQuery("#loader").addClass("active");
-
-    this.setState({ page: this.state.page + 1 });
-
-    fetch(NeomorphSettings.URL.api + "/posts/?page=" + this.state.page)
-      .then(function (response) {
-        for (var pair of response.headers.entries()) {
-
-          // getting the total number of pages
-          if (pair[0] == 'x-wp-totalpages') {
-            totalPages = pair[1];
-          }
-
-          if (that.state.page >= totalPages) {
-            that.setState({ getPosts: false })
-          }
-        }
-        if (!response.ok) {
-          throw Error(response.statusText);
-        }
-        return response.json();
-    })
-    .then(function (results) {
-      var allPosts = that.state.posts.slice();
-      results.forEach(function (single) {
-        allPosts.push(single);
-      })
-      that.setState({ posts: allPosts });
-
-      // removing the loader
-      jQuery("#loader").removeClass("active");
-
-    }).catch(function (error) {
-      console.log('There has been a problem with your fetch operation: ' + error.message);
-      jQuery("#loader").remove();
-    });
-  }
-
-  componentDidUpdate() {
-    var FadeInController = new ScrollMagic.Controller();
-    jQuery('.posts-container .col-md-4.card-outer').each(function () {
-
-      // build a scene
-      var FadeInScene = new ScrollMagic.Scene({
-        triggerElement: this.children[0],
-        reverse: false,
-        triggerHook: 1
-      })
-        .setClassToggle(this, 'fade-in')
-        .addTo(FadeInController);
-    });
-  }
-
-  render() {
-    if (this.state.posts.length == 0) {
-      return null;
+        return _.map(this.props.posts, post => {
+            return (                    
+                <div className="card-outer grid-item" key={post.id}>                    
+                    <div className="card h-100">
+                        <div className="img-outer">
+                            <Link to={'post/?slug=' + post.slug}>
+                                <img className="card-img-top" src={post.featured_image_src ? post.featured_image_src : Placeholder} alt="Featured Image" />
+                            </Link>
+                        </div>
+                        <div className="card-body">
+                            <h4 className="card-title"><Link to={NeomorphSettings.path + `posts?id=${post.id}`}>{post.title.rendered}</Link></h4>
+                            <h4 className="card-author">Post made by: <Link to={post._links.author[0].href}>{post.author_name}</Link></h4>
+                            <p className="card-text"><small className="text-muted">{post.author_name} &ndash; {post.published_date}</small></p>
+                            <p>{jQuery(post.excerpt.rendered).text()}</p>                        
+                        </div>
+                    </div>
+                </div>
+            );
+        });
     }
-    // <img src={LoadingIcon} alt="loader gif" id="loader" />
-    return (
-      <div className="posts-module">      
-        <h2 className="posts-title">Recent Posts</h2>
-        <PostList posts={this.state.posts} />
-      </div>
-    );
-  }
+
+    render() {
+        console.log(this.props.posts);
+        return (
+            <div>
+                <div className="post-module">
+                    <div className="float-right text-xs-right">
+                        <Link className="btn btn-primary" to={'new-post'}>New Post</Link>
+                    </div>
+                    <h1 className="page-title">Recent Posts</h1>                    
+                    <div className="posts-container grid-container">                    
+                        {this.renderPosts()}
+                    </div>
+                </div>
+            </div>
+        );    
+    }
+
 }
 
-export default Posts;
+function mapStateToProps(state) {
+    return { posts: state.posts };
+}
+
+export default connect(mapStateToProps, { fetchPosts })(Posts);

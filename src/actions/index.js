@@ -9,6 +9,7 @@ const API_KEY = "Wordpress API not secured yet";
 export const SEARCH_WEBSITE = 'SEARCH_WEBSITE';
 export const FETCH_PROJECTS = 'fetch_projects';
 export const FETCH_PROJECT = 'fetch_project';
+export const FETCH_POSTS = 'fetch_posts';
 export const FETCH_PAGES = 'FETCH_PAGES';
 export const FETCH_PAGE = 'FETCH_PAGE';
 export const CREATE_PROJECT = 'create_project';
@@ -60,6 +61,16 @@ export function createProject() {
 
 	return {
 		type: FETCH_PROJECTS,
+		payload: request
+	};
+}
+
+export function fetchPosts() {
+	const url = `${ROOT_URL}/posts?_embed`;
+	const request = axios.get(url);
+
+	return {
+		type: FETCH_POSTS,
 		payload: request
 	};
 }

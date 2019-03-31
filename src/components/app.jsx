@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from '../header';
 import Footer from '../footer';
 import Posts from '../components/posts';
-import Post from '../containers/post';
+import PostsNew from '../components/posts_new';
 import ProjectsIndex from './projects_index';
 import ProjectsNew from './projects_new';
 import ProjectsShow from './projects_show';
@@ -41,9 +41,12 @@ class App extends Component {
             <Route path={NeomorphSettings.path + 'projects/new'} component={ProjectsNew} />
             <Route path={NeomorphSettings.path + 'project/:id'} component={ProjectsShow} />
             <Route exact path={NeomorphSettings.path + 'projects'} component={ProjectsIndex} />            
-            {/* <Route exact path={NeomorphSettings.path + 'page/:slug'} component={PageShow} />             */}
-            {/* <Route exact path={NeomorphSettings.path + ':page'} component={Page} /> */}
-            <Route exact path={NeomorphSettings.path} component={Posts} /> {/* /the root path */}
+            {/* <Route exact path={NeomorphSettings.path + 'page/:slug'} component={PageShow} /> */}
+            {/* <Route exact path={NeomorphSettings.path + ':page'} component={Page} /> */}            
+            <Route path={NeomorphSettings.path + 'new-post'} component={PostsNew} />\
+            {/* <Route path={NeomorphSettings.path + 'new-entry'} component={PostsNew} /> make a component for creating all post types */}
+            <Route exact path={NeomorphSettings.path + 'posts'} component={Posts} />            
+            <Route exact path={NeomorphSettings.path + '/'} component={Posts} /> {/* /the root path */}
             {/* <Route exact path={NeomorphSettings.path + 'posts?post_type=projects'} component={Projects} /> */}
             <Route path="*" component={NotFound} />
           </Switch>
