@@ -1,7 +1,7 @@
 var MiniCssExtractPlugin = require("mini-css-extract-plugin");
 var path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+//const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
@@ -10,9 +10,9 @@ module.exports = {
   },
   mode: 'development',
   output: {
-    filename: '[name].js',
-    path: path.resolve(__dirname, 'dist')
-    // publicPath: '/'
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/dist'
   },
   module: {
     rules: [
@@ -64,14 +64,16 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   devServer: {
-    // contentBase: './src',
-    // contentBase: path.join(__dirname, './src'),
-    publicPath: 'localhost/portfolio',
+    contentBase: './dist',
+    contentBase: path.join(__dirname, './src'),
+    historyApiFallback: true,
+    // publicPath: 'localhost/portfolio',
     hot: true
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    // new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
+      template: './index.php',
       title: 'Hot Module Replacement'
     }),
     new webpack.HotModuleReplacementPlugin(),

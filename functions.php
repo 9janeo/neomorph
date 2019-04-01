@@ -14,7 +14,7 @@
 
 // add_action('wp_enqueue_scripts', 'app_resources');
 
-wp_enqueue_script( 'neomorph-script', get_stylesheet_directory_uri() . '/dist/app.js' , array(), null, true );
+wp_enqueue_script( 'neomorph-script', get_stylesheet_directory_uri() . '/dist/bundle.js' , array(), null, true );
 
   $url = trailingslashit( home_url() );
   $path = trailingslashit( parse_url( $url, PHP_URL_PATH ) );
@@ -43,7 +43,7 @@ wp_enqueue_script( 'neomorph-script', get_stylesheet_directory_uri() . '/dist/ap
   );
 
 
-// This line solved the 'wp-admin visual editor not appearing' issue
+// Solves 'wp-admin visual editor not appearing'
   // define('CONCATENATE_SCRIPTS', false);
 
 // add_action('wp_enqueue_scripts', 'neomorph-script');

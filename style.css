@@ -517,7 +517,7 @@ ul.nav li.menu-item a:active , ul.nav li a:hover, ul.nav li.current-menu-item a 
 	position: relative;
 }
 .projectContent {
-	
+	max-width: 100%;
 }
 
 /* _______**** Contacts Page ****________ */

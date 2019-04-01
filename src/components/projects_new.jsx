@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Field, reduxForm } from 'redux-form';
 import DropdownSelect from './dropdown_select';
+import { Link } from 'react-router-dom';
 
 
 // ADD AUTHORIZATION CLASUE BEFORE ACCESS TO THIS COMPONENT
@@ -25,7 +26,7 @@ class ProjectsNew extends Component {
                     type="text"
                     {...field.input}
                 />
-                {field.meta.error}
+                {field.meta.touched ? field.meta.error : ''}
             </div>
         );
     }
@@ -33,6 +34,12 @@ class ProjectsNew extends Component {
     render() {
         return (
             <div className="form-group">
+                <div className="right text-xs-right">
+                    <Link className="btn-sm btn-primary" to={NeomorphSettings.path + 'projects'}>
+                        <span className="glyphicon glyphicon-chevron-left"></span>
+                        View Projects
+                    </Link>
+                </div>
                 <h1>ProjectsNew!</h1>
                 <form>
                     <Field
@@ -53,7 +60,7 @@ class ProjectsNew extends Component {
                         name="content"
                         component={this.renderField}
                     />
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-success">Submit</button>
                 </form>
             </div>
         );

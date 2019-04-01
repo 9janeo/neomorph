@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchPosts, fetchProjects } from '../actions';
+import { fetchProject, fetchProjects } from '../actions';
 // import ProjectList from '../containers/project-list';
 
 class ProjectsIndex extends Component {
@@ -12,20 +12,29 @@ class ProjectsIndex extends Component {
 
     renderProjects() {
         //get all projects and display properly
+
+        // [{Name: projects}].map((anObjectMapped, index) => {
+        //     return (
+        //         <p key={`${anObjectMapped.name}_{anObjectMapped.email}`}>
+        //             {anObjectMapped.name} - {anObjectMapped.email}
+        //         </p>
+        //     );
+        // })
+
         return _.map(this.props.projects, project => {
             const projectImage = project._embedded['wp:featuredmedia'][0].source_url
             return (
                     <div className="card-outer grid-item" key={project.id}>
                         <div className="card h-100">
                             <div className="card-body">
-                            <h4 className="card-title"><Link to={NeomorphSettings.path + `project?id=${project.id}`}>{project.title.rendered}</Link></h4>
-                            <div className="img-outer canvasThumb">
-                                <Link to={NeomorphSettings.path + project.slug}>
-                                <img className="card-img-top" src={projectImage} alt="Featured Image" />
-                                </Link>
-                            </div>
-                            <p>{jQuery(project.excerpt.rendered).text()}</p>
-                            <Link to={NeomorphSettings.path + 'projects/' + project.id}>Read more</Link>
+                                <h4 className="card-title"><Link to={NeomorphSettings.path + `project?id=${project.id}`}>{project.title.rendered}</Link></h4>
+                                <div className="img-outer canvasThumb">
+                                    <Link to={NeomorphSettings.path + project.slug}>
+                                        <img className="card-img-top" src={projectImage} alt="Featured Image" />
+                                    </Link>
+                                </div>
+                                <p>{jQuery(project.excerpt.rendered).text()}</p>
+                                <Link to={NeomorphSettings.path + 'project/' + project.id}>Read more</Link>
                             </div>
                         </div>
                     </div>
@@ -33,9 +42,9 @@ class ProjectsIndex extends Component {
         });
     }
 
-    render() {
-        // console.log(this.props.projects);
-
+    render() {        
+        console.log("Render projects below:");
+        console.log(this.props.projects);
         return (
             <div>
                 <div className="project-module">

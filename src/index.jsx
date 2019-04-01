@@ -11,7 +11,7 @@ import reducers from './reducers';
 // import Posts from './components/posts';
 // import Post from './containers/post';
 // import Projects from './projects';
-// import Project from './project';
+import Project from './components/project';
 // import Page from './components/page';
 
 // import NotFound from './not-found';
@@ -20,7 +20,7 @@ import App from './components/app';
 // import ProjectsIndex from './components/projects_index';
 // import ProjectsNew from './components/projects_new';
 
- const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 // React Router
 const routes = (
@@ -45,9 +45,10 @@ const routes = (
   </Provider> 
 );
 
-// const printa = (
-//   // console.log('Accepting the updated printMe Module!')
-// );
+const printa = (
+  console.log('Accepting the updated printMe Module!')
+  // console.log('App level state @ index:' + this.state)
+);
 
 render( // rendering to the DOM by replacing #page with the root React component  
   (routes) , document.getElementById('neomorph') // rendering the route
@@ -56,7 +57,7 @@ render( // rendering to the DOM by replacing #page with the root React component
 
 if (module.hot) {
   module.hot.accept('./print.js', function() {
-    console.log('Accepting the updated printMe modu!!');
+    console.log('Accepting the updated printMe module!!');
      printMe();
     })
 }
