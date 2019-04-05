@@ -10,7 +10,6 @@ import NotFound from '../not-found';
 class ProjectsShow extends Component {
 
   componentDidMount() {
-    // var that = this; 
     console.log ("hitting projects show component");  
     const project = this.props.match.params
     const { id } = project.id
@@ -93,12 +92,14 @@ class ProjectsShow extends Component {
   render() {
     const {project} = this.props;
     console.log ("Main project render props:");
+    if (!project) {
+      return <div>Loading ... </div>
+    }
 
     // if (!project) {
     //   return <div>Loading ... </div>
     // }
     // projects[this.props.match.params.id];
-
     return (
       <div className="container post-entry show">
         <p>

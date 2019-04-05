@@ -12,6 +12,11 @@ export default function(state = [] , action) {
             // newState[project.id] = project;
             // return newState;
             return { [action.payload.data.id]: action.payload.data, state };
+            const project = action.payload.data;
+            const newState = [ ...state ];
+            newState[project.id] = project;
+            return newState;
+            // return { ...state, [action.payload.data.id]: action.payload.data };
         case FETCH_PROJECTS:
             // console.log(action.payload.data); // expect a collection of projects
             return _.mapKeys(action.payload.data, 'id'); // enables us to do simple Id lookups on state.projects in future
