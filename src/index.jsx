@@ -6,8 +6,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import promise from 'redux-promise';
 import reducers from './reducers';
 
-// import Header from './header';
-// import Footer from './footer';
+import Header from './header';
+import Footer from './footer';
 // import Posts from './components/posts';
 // import Post from './containers/post';
 // import Projects from './projects';
